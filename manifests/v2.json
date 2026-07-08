@@ -1,0 +1,13 @@
+{
+  "name": "Rolling Clock — Premium v2",
+  "version": "2.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "firmware/v2/firmware.merged.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

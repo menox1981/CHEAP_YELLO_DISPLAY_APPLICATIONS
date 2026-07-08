@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rolling Clock — Web Flasher</title>
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0a1018;
+    --bg2: #121b28;
+    --card: rgba(255,255,255,.06);
+    --border: rgba(130,190,255,.25);
+    --fg: #f4f7fb;
+    --muted: #9db1c9;
+    --accent: #1fb6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(160deg, var(--bg), var(--bg2));
+    color: var(--fg);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { margin-bottom: 24px; }
+  h1 { font-size: 28px; margin: 0 0 8px 0; }
+  .lede { color: var(--muted); font-size: 15px; max-width: 640px; line-height: 1.5; }
+  .notice {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(255,180,60,.1);
+    border: 1px solid rgba(255,180,60,.35);
+    color: #ffcf8a;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .notice code { background: rgba(0,0,0,.3); padding: 1px 6px; border-radius: 4px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card h2 { font-size: 19px; margin: 0 0 4px 0; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+  .tag.touch { background: rgba(31,182,255,.15); color: #7fd6ff; }
+  .tag.notouch { background: rgba(120,220,150,.15); color: #8fe3ab; }
+  .card ul { margin: 8px 0 18px 0; padding-left: 18px; font-size: 14px; color: var(--fg); line-height: 1.6; }
+  .card ul li::marker { color: var(--accent); }
+  .card .requires { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .install-row { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+  esp-web-install-button { --esp-tools-button-color: #03131d; }
+  button.flash-btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #03131d;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+  }
+  button.flash-btn:hover { filter: brightness(1.08); }
+  .unsupported, .not-allowed {
+    font-size: 13px;
+    color: #ffb4b4;
+    background: rgba(255,80,80,.1);
+    border: 1px solid rgba(255,80,80,.3);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Rolling Clock — Web Flasher</h1>
+    <p class="lede">
+      Flash a Rolling Clock firmware straight from this page over USB — no PlatformIO, no
+      Arduino IDE, nothing to install. Pick the variant that matches your hardware and click
+      Install.
+    </p>
+    <div class="notice">
+      <strong>Browser requirement:</strong> this only works in <strong>Chrome, Edge, or Opera on
+      desktop</strong> (Windows/macOS/Linux/ChromeOS) — it uses the Web Serial API, which
+      Firefox and Safari don't support, and which isn't available on mobile browsers. Plug your
+      ESP32 Cheap Yellow Display in via USB before clicking Install, and pick its serial port
+      when prompted.
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="card">
+      <span class="tag touch">Touchscreen required</span>
+      <h2>Premium Version</h2>
+      <p class="requires">The original release: multi-provider weather with on-device screens and branding.</p>
+      <ul>
+        <li>Open-Meteo + OpenWeatherMap weather, with automatic failover</li>
+        <li>3 on-device weather screens: Now / Forecast / Stats</li>
+        <li>Custom brand name (boot screen, dashboard, web dashboard)</li>
+        <li>Web dashboard with live diagnostics (<code>/api/health</code>)</li>
+        <li>WiFi setup portal + Improv serial provisioning</li>
+      </ul>
+      <div class="install-row">
+        <esp-web-install-button manifest="manifests/premium-version.json">
+          <button slot="activate" class="flash-btn">Install Premium Version</button>
+          <span slot="unsupported" class="unsupported">
+            Your browser doesn't support Web Serial. Use Chrome or Edge on desktop.
+          </span>
+          <span slot="not-allowed" class="not-allowed">
+            Web Serial needs HTTPS. You're seeing this because the page isn't served securely.
+          </span>
+        </esp-web-install-button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag touch">Touchscreen required</span>
+      <h2>Premium v2</h2>
+      <p class="requires">Everything in Premium Version, plus an access-code lock, an on-device keyboard, and AI insights.</p>
+      <ul>
+        <li>Access-code gate (protects the firmware from unlicensed use)</li>
+        <li>On-device keyboard — edit city/brand/API keys on the touchscreen</li>
+        <li>OpenAI weather insights — tap to generate a short forecast summary</li>
+        <li>Forecast line chart (8 points) instead of plain text rows</li>
+        <li>Automatic recovery back to the primary weather provider after a fallback</li>
+      </ul>
+      <div class="install-row">
+        <esp-web-install-button manifest="manifests/v2.json">
+          <button slot="activate" class="flash-btn">Install Premium v2</button>
+          <span slot="unsupported" class="unsupported">
+            Your browser doesn't support Web Serial. Use Chrome or Edge on desktop.
+          </span>
+          <span slot="not-allowed" class="not-allowed">
+            Web Serial needs HTTPS. You're seeing this because the page isn't served securely.
+          </span>
+        </esp-web-install-button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag notouch">No touchscreen needed</span>
+      <h2>Premium v3 <span style="color:var(--muted); font-weight:400;">(Non-Touch)</span></h2>
+      <p class="requires">Same feature set as v2, built for CYD boards with no touch controller.</p>
+      <ul>
+        <li>All Premium v2 features — configured without any touch input</li>
+        <li>Access code entered over USB serial (<code>UNLOCK &lt;code&gt;</code>)</li>
+        <li>City, brand, provider, and API keys set via web dashboard / WiFi portal</li>
+        <li>Clock and weather dashboard still render and update normally</li>
+        <li>Ideal for a display-only "digital signage" style install</li>
+      </ul>
+      <div class="install-row">
+        <esp-web-install-button manifest="manifests/v3.json">
+          <button slot="activate" class="flash-btn">Install Premium v3</button>
+          <span slot="unsupported" class="unsupported">
+            Your browser doesn't support Web Serial. Use Chrome or Edge on desktop.
+          </span>
+          <span slot="not-allowed" class="not-allowed">
+            Web Serial needs HTTPS. You're seeing this because the page isn't served securely.
+          </span>
+        </esp-web-install-button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>
+      After installing, connect the device to WiFi (via the on-screen/serial setup or the
+      <code>CYD-Setup-XXXXXX</code> access point) and open its web dashboard to configure
+      weather, branding, and (on v2/v3) the OpenWeatherMap/OpenAI API keys.
+    </p>
+    <p>
+      Having trouble flashing? Make sure no other program (Arduino IDE, PlatformIO monitor,
+      etc.) has the serial port open, and try a different USB cable/port if the device isn't
+      detected.
+    </p>
+  </footer>
+</div>
+</body>
+</html>

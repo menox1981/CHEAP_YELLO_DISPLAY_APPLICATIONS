@@ -1,0 +1,13 @@
+{
+  "name": "Rolling Clock — Premium v3 (Non-Touch)",
+  "version": "3.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "firmware/v3/firmware.merged.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
