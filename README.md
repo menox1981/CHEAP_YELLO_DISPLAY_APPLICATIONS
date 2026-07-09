@@ -17,7 +17,7 @@ systems engineer. Contact/support details are on `apps.html#support`.
 - **`index.html`** — Home. Hero, "how it works" (3-step install flow), a Rolling Clock teaser
   card linking into the showcase.
 - **`apps.html`** — Application Showcase. Searchable/filterable catalog (currently just Rolling
-  Clock's 3 variants), Premium access (manual PayPal purchase flow), Support & contact.
+  Clock's 3 variants), Premium access ($10 one-time PayPal appreciation token), Support & contact.
 
 Everything else from the original site-relaunch brief (About CYD, Why This Platform, How It
 Works as its own page, Supported Hardware, Project Gallery, Community, Roadmap, About The
@@ -40,9 +40,9 @@ Modular clock/weather firmware, offered as three variants:
 | Premium v2 | Yes | Adds access-code lock, on-device keyboard, OpenAI insights, forecast chart, provider auto-recovery |
 | Premium v3 | No | Same as v2, built for boards with no touch controller — configured via serial + web dashboard |
 
-Premium v2/v3 are locked behind a one-time access code, purchased manually via PayPal — see
-`apps.html#premium` for the exact flow. There's no payment gateway integration here, it's a
-direct pay-then-get-a-code process.
+Premium v2/v3 are locked behind a one-time access code, unlocked with a **$10 USD one-time**
+PayPal appreciation token (not a strict license fee) — see `apps.html#premium` for the exact
+flow. There's no payment gateway integration here, it's a direct pay-then-get-a-code process.
 
 ## Deferred pages — and why
 
@@ -137,5 +137,6 @@ firmware/
 - `new_install_prompt_erase: true` is set in every manifest, so users get an "erase device
   first?" prompt — recommended when someone might be switching between variants, since NVS
   layouts can drift between them over time.
-- Payment is a manual PayPal-then-contact flow, not an automated checkout — there's no order
-  system or receipt verification built here.
+- Payment is a manual PayPal-then-contact flow ($10 USD one-time, framed as an appreciation
+  token rather than a strict license fee), not an automated checkout — there's no order system
+  or receipt verification built here.
