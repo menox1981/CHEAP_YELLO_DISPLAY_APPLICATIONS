@@ -6,7 +6,7 @@
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "firmware/premium-version/firmware.merged.bin", "offset": 0 }
+        { "path": "../firmware/premium-version/firmware.merged.bin", "offset": 0 }
       ]
     }
   ]
